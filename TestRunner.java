@@ -1,7 +1,7 @@
 /*
  * Program Title: Java Test Runner
  * Author: Hayden Mankin
- * Date: 11/21/2021
+ * Date: 1/19/2021
  * Purpose: Run tests on Java programming assignments.
  */
 
@@ -17,15 +17,35 @@ import static org.junit.Assert.assertEquals;
 
 public class TestRunner {
   @Test
-  public void testHello() {
-    assertEquals("Hello", Main.Hello());
+  public void testSurfaceArea_1x1x1() {
+    assertEquals(6, Main.getSurfaceArea(1));
+  }
+  
+  @Test
+  public void testSurfaceArea_2x2x2() {
+    assertEquals(24, Main.getSurfaceArea(2));
+  }
+  
+  @Test
+  public void testSurfaceArea_4x4x4() {
+    assertEquals(96, Main.getSurfaceArea(4));
   }
 
   @Test
-  public void testWorld() {
-    assertEquals("World", Main.Hello());
+  public void testVolume_1x1x1() {
+    assertEquals(1, Main.getVolume(1));
   }
 
+  @Test
+  public void testVolume_2x2x2() {
+    assertEquals(1, Main.getVolume(1));
+  }
+  
+  @Test
+  public void testVolume_4x4x4() {
+    assertEquals(64, Main.getVolume(4));
+  }
+  
   public static void main(String[] args) {
     JUnitCore runner = new JUnitCore();
     runner.addListener(new TestListener());
@@ -54,6 +74,9 @@ class TestListener extends RunListener {
       }
       long elapsedSeconds = (endTime - startTime) / 1000;
       System.out.printf("Elapsed time of tests execution: %s seconds%n", elapsedSeconds);
+    
+      System.out.println("\nRunning main method...\n");
+      Main.main(new String[0]);
   }
   @Override
   public void testStarted(Description description) {
